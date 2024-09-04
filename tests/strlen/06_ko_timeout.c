@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   06_ko_timeout.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 22:41:33 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 22:52:25 by tlegrand         ###   ########.fr       */
+/*   Created: 2024/09/04 22:45:07 by tlegrand          #+#    #+#             */
+/*   Updated: 2024/09/04 23:10:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
 #include "tests.h"
 
-int	main(void)
+int	ko_timeout(void)
 {
-	return (strlen_launcher());
+	int	i;
+
+	i = 0;
+	while (1)
+	{
+		sleep(1);
+		i++;
+	}
+	return (0);
 }

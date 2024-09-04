@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 20:58:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 22:15:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:03:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	test_format_status_exit(t_test *test)
 {
 	char	*msg;
 
+	if (test->status == 255)
+		test->status = -1;
 	if (test->status == 0)
 		msg = "[OK]";
 	else if (test->status == -1)
@@ -63,6 +65,7 @@ int	test_execute(t_test *test)
 	else if (WIFEXITED(wstatus))
 	{
 		test->status = WEXITSTATUS(wstatus);
+		// printf("raw ext status: %d, stored: %d\n", WEXITSTATUS(wstatus), test->status);
 		return (test_format_status_exit(test));
 	}
 	else if (WIFSIGNALED(wstatus))
@@ -88,22 +91,22 @@ void	test_clear(t_test *head)
 int	test_launcher(t_test **test_list)
 {
 	int	res;
-	int	succes;
+	int	success;
 	int	total;
 
 	res = 0;
-	succes = 0;
+	success = 0;
 	total = 0;
 	while (*test_list)
 	{
 		if (test_execute(*test_list) == 0)
-			succes++;
+			success++;
 		else
 			res = -1;
 		total = (*test_list)->id;
 		(*test_list) = (*test_list)->next;
 	}
-	printf("success: %d/%d\n", succes, total);
+	printf("success: %d/%d\n", success, total);
 	test_clear(*test_list);
 	test_list = NULL;
 	return (res);

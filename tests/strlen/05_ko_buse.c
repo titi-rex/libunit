@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   05_ko_buse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 22:41:33 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 22:52:25 by tlegrand         ###   ########.fr       */
+/*   Created: 2024/09/04 22:45:07 by tlegrand          #+#    #+#             */
+/*   Updated: 2024/09/04 23:07:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
 #include "tests.h"
 
-int	main(void)
+int	ko_buse(void)
 {
-	return (strlen_launcher());
+	raise(SIGBUS);
+	return (0);
 }

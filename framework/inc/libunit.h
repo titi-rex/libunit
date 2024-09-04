@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 20:55:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 22:15:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:04:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <string.h>
 
 # define NAME_MAX_LENGHT 32
-# define TIMEOUT 5
+# define TIMEOUT 2
 
 typedef int	(*t_test_func)(void);
 
