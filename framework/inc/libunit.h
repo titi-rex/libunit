@@ -1,24 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libunit.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/04 20:55:43 by tlegrand          #+#    #+#             */
+/*   Updated: 2024/09/04 22:15:01 by tlegrand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBUNIT_H
 # define LIBUNIT_H
-# include <sys/type.h>
-# include <sys/wait.h>
 # include <signal.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <string.h>
+
 # define NAME_MAX_LENGHT 32
+# define TIMEOUT 5
 
-typedef int (*f)(void) t_test_func;
+typedef int	(*t_test_func)(void);
 
-typedef struct s_test {
-    char            name[NAME_MAX_LENGHT];
-    size_t          id;
-    int             success;
-    t_test_func     function;
-    struct s_test*  next;
-}   t_test;
+typedef struct s_test
+{
+	char			name[NAME_MAX_LENGHT];
+	size_t			id;
+	int				status;
+	t_test_func		function;
+	struct s_test	*next;
+}					t_test;
 
+void	test_loader(t_test **test_list, char *test_name, t_test_func function);
+int		test_launcher(t_test **test_list);
 
-void    test_loader(t_test** test_list, char* test_name, t_test_func function);
-int     test_launcher(t_test** test_list);
-
-# endif
+#endif
