@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 20:55:23 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 21:31:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:22:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_test	*create_node(char *test_name, t_test_func f)
 		return (NULL); // add error
 	bzero(new, sizeof(t_test));
 	if (strlcpy(new->name, test_name, NAME_MAX_LENGHT - 1) > NAME_MAX_LENGHT)
-		printf("WARN: name too long -> truncated");
+		test_logger("WARN: name too long -> truncated");
 	new->id = 1;
 	new->function = f;
 	return (new);

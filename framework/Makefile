@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 21:12:50 by tlegrand          #+#    #+#              #
-#    Updated: 2024/09/04 21:26:47 by tlegrand         ###   ########.fr        #
+#    Updated: 2024/09/05 15:23:24 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ IFLAG		=	-I ${DIR_INC}
 
 #	==============================	SRC	==============================	#
 SRC_DIR		=	src/
-SRC_LST		=	ft_printf.c test_loader.c test_launcher.c
+SRC_LST		=	test_logger.c test_loader.c test_launcher.c
 SRC			=	${addprefix ${SRC_DIR}, ${SRC_LST}}
 
 

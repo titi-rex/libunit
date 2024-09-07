@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 22:41:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 23:10:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:36:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	strlen_launcher(void)
 {
 	t_test	*test;
 
-	printf("STRLEN: \n");
+	// test_logger_init(1, "strlen.log");
+	test_logger("STRLEN: \n", NULL); // open log file
 	test = NULL;
 	test_loader(&test, "OK short", &ok_short);
 	test_loader(&test, "OK long", &ok_long);
@@ -27,3 +28,7 @@ int	strlen_launcher(void)
 	test_loader(&test, "Sleep test", &ko_timeout);
 	return (test_launcher(&test));
 }
+
+/*
+./test strlen strcpy
+*/

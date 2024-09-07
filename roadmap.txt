@@ -1,0 +1,20 @@
+add:
+	- color
+	- skip test by arg
+	- stdin test
+	- bitflag for test : stdin, timeout/longtimeout/notimeout, 
+	- log file with opt -l
+	- verbose with opt -v ? (scenario de test, expextec, got)
+	- exit cleanly test passed to fork
+	- handle more signal
+	- memcheck??
+	- add a perf counter (time ? space? )
+	
+
+
+model tu :
+-organize (arrange)
+- action (sur obj)
+- assert 
+
+-evite logique ou scinder test

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 20:58:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 23:03:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:44:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	test_format_status_exit(t_test *test)
 		msg = "[KO]";
 	else
 		msg = "[malformed test]";
-	printf("\t> %s: %s\n", test->name, msg);
+	test_logger("\t> %s: %s\n", test->name, msg);
 	return (test->status);
 }
 
@@ -42,7 +42,7 @@ int	test_format_status_signal(t_test *test)
 		msg = "[TIMEOUT]";
 	else
 		msg = "[unhandled signal]";
-	printf("\t> %s: %s\n", test->name, msg);
+	test_logger("\t> %s: %s\n", test->name, msg);
 	return (-1);
 }
 
@@ -61,11 +61,11 @@ int	test_execute(t_test *test)
 	else if (pid == -1)
 		return (-1); // add error
 	if (wait(&wstatus) == -1)
-		printf("wait error\n");
+		test_logger("wait error\n");
 	else if (WIFEXITED(wstatus))
 	{
 		test->status = WEXITSTATUS(wstatus);
-		// printf("raw ext status: %d, stored: %d\n", WEXITSTATUS(wstatus), test->status);
+		// test_logger("raw ext status: %d, stored: %d\n", WEXITSTATUS(wstatus), test->status);
 		return (test_format_status_exit(test));
 	}
 	else if (WIFSIGNALED(wstatus))
@@ -106,8 +106,9 @@ int	test_launcher(t_test **test_list)
 		total = (*test_list)->id;
 		(*test_list) = (*test_list)->next;
 	}
-	printf("success: %d/%d\n", success, total);
+	test_logger("success: %d/%d\n", success, total); //close log file
 	test_clear(*test_list);
+	_get_log_fd(1, NULL);
 	test_list = NULL;
 	return (res);
 }
