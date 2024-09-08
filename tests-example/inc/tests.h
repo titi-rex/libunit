@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_ko_bad_result.c                                 :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 22:44:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/04 22:50:06 by tlegrand         ###   ########.fr       */
+/*   Created: 2024/09/04 22:41:50 by tlegrand          #+#    #+#             */
+/*   Updated: 2024/09/08 13:45:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#ifndef TESTS_H
+# define TESTS_H
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <signal.h>
 
-int	ko_bad_result(void)
-{
-	if (strlen("hello.") == 75)
-		return (0);
-	else
-		return (-1);
-}
+int	strlen_launcher(void);
+int	ok_short(void);
+int	ok_long(void);
+int	ko_bad_result(void);
+int	ko_segv(void);
+int	ko_buse(void);
+int	ko_timeout(void);
+
+int	write_launcher(void);
+int	ok_short_string(void);
+int	ok_short_string_ret(void);
+int	ok_empty(void);
+int	ko_bad_fd(void);
+
+
+#endif

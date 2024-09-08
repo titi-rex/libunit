@@ -6,52 +6,46 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 21:12:50 by tlegrand          #+#    #+#              #
-#    Updated: 2024/09/04 23:09:49 by tlegrand         ###   ########.fr        #
+#    Updated: 2024/09/08 14:43:09 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ##
-# tests
+# libunit
 #
-# @file
+# @file Makefile
 # @version 0.2
 
 
 #	==============================	NAME	==============================	#
-NAME	=	tests
+NAME	=	libunit.a
 
 #	==============================	CMP	==============================	#
+AR			=	ar
+ARFLAG		=	rcs
+
 CC			=	gcc 
-CFLAG		=	-Wall -Wextra -Werror 
+CFLAG		=	-Wall -Wextra -Werror -g3 
 DFLAG		=	-MMD -MP
 
 
 #	==============================	INCLUDE	==============================	#
 DIR_INC		=	inc/
-IFLAG		=	-I ${DIR_INC} -I ../framework/inc
+IFLAG		=	-I ${DIR_INC}
 
 
 #	==============================	SRC	==============================	#
-# STRLEN
-SRC_DIR		=	strlen/
-SRC_LST		=	00_launcher.c \
-				01_ok_short.c \
-				02_ok_long.c \
-				03_ko_bad_result.c \
-				04_ko_segv.c \
-				05_ko_buse.c \
-				06_ko_timeout.c 
-
+SRC_DIR		=	src/
+SRC_LST		=	test_loader.c test_launcher.c
 SRC			=	${addprefix ${SRC_DIR}, ${SRC_LST}}
-SRC_MAIN	=	main.c
+
 
 #	==============================	OBJ	==============================	#
 OBJ_DIR		=	.obj/
-OBJ_LST		=	${SRC_LST:.c=.o} ${SRC_MAIN:.c=.o}
+OBJ_LST		=	${SRC_LST:.c=.o}
 OBJ			=	${addprefix ${OBJ_DIR}, ${OBJ_LST}}
 
-#	==============================	OBJ	==============================	#
-LIBUNIT		=	../framework/libunit.a
+
 
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
 .PHONY: all clean fclean
@@ -68,23 +62,14 @@ fclean: clean
 
 re: fclean all
 
-test:	${NAME}
-	@./${NAME}
-
 
 #	==============================	COMPILATION	==============================	#
-${NAME}: ${LIBUNIT} ${OBJ_DIR} ${OBJ}
-	${CC} ${IFLAG} ${CFLAG} ${OBJ} ${LIBUNIT} -o $@
+${NAME}: ${OBJ_DIR} ${OBJ}
+	${AR} ${ARFLAG} $@ ${OBJ}
 
 
 ${OBJ_DIR}%.o: ${SRC_DIR}%.c
 	${CC} ${IFLAG} ${CFLAG} ${DFLAG} -c $< -o $@
-
-${OBJ_DIR}%.o: %.c
-	${CC} ${IFLAG} ${CFLAG} ${DFLAG} -c $< -o $@
-
-${LIBUNIT}:
-	make -C ../framework
 
 -include ${OBJ_DIR}/*.dep
 
@@ -92,6 +77,5 @@ ${LIBUNIT}:
 #	==============================	UTILS	==============================	#
 ${OBJ_DIR}:
 	@mkdir ${OBJ_DIR}
-
 
 # end
