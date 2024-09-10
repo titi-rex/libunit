@@ -9,19 +9,16 @@
 NAME		=	exampler.out
 DIR_LIBUNIT	=	../libunit
 
+
 #	==============================	CMP	==============================	#
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g3
 DFLAG		=	-MMD -MP
-define cc-command
-$(CC) $(CFLAGS) $< -o $@
-endef
-# ${cc-command}
+
 
 #	==============================	INCLUDE	==============================	#
 DIR_INC		=	inc/ ${DIR_LIBUNIT}/inc
 IFLAGS		=	$(DIR_INC:%=-I%)
-
 
 
 #	==============================	SRC	==============================	#
@@ -49,6 +46,7 @@ OBJ_TMP		=	${addprefix ${OBJ_DIR}, ${SRC_ALL}}
 
 OBJ			=	${OBJ_TMP:.c=.o}
 DEPS		=	${OBJ:.o=.d}
+
 
 #	==============================	LIB	==============================	#
 LIBUNIT		=	${DIR_LIBUNIT}/libunit.a
