@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 20:55:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/09/10 22:46:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:03:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_meta_int_function
 	char	*name;
 	int		(*f_ptr)();
 }	t_mifunc;
+
+
 
 typedef struct s_test
 {
